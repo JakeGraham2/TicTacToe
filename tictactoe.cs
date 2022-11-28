@@ -6,16 +6,14 @@ namespace game
    {
       static void Main(string[] args)
       {
-         bool isGameOver = false;
          string currentPlayer = "x";
          List<string> board = new List<string>{"1","2","3","4","5","6","7","8","9"};
-         while (!isGameOver(board))
+         while (!IsGameOver(board))
          {
+            currentPlayer = GetPlayer(currentPlayer);
             DisplayBoard(board);
-            GetPlayer(currentPlayer);
             Console.Write($" It's {currentPlayer}'s turn");
             GetPlayerMove(board,currentPlayer);
-            board[playerMove] = currentPlayer;
          }
       }
    
@@ -27,7 +25,7 @@ namespace game
          Console.WriteLine("-+-+-");
          Console.WriteLine($"{board[6]}|{board[7]}|{board[8]}");
       }
-      static bool IsGameOver(bool isGameOver, List<string> board)
+      static bool IsGameOver( List<string> board)
       {
         bool isWinner = false;
         //rows
@@ -74,22 +72,23 @@ namespace game
          {
             nextPlayer = "o";
          }
-            return nextPlayer;
+         return nextPlayer;
       }
-      static string GetPlayerMove(List <string> board, string currentPlayer)
+      static void GetPlayerMove(List <string> board, string currentPlayer)
       {
          bool value = false;
-         while(value)
+         while(!value)
          { 
             Console.Write($"{currentPlayer}'s turn to choose a square (1-9):");
             string playerMove = Console.ReadLine();
-            int playerMoveInt = int.Parse(playerMove);
+            int playerMoveInt = Convert.ToInt32 (playerMove);
             if(board[playerMoveInt] == "x" || board[playerMoveInt] == "o" )
             {
                Console.WriteLine($"You returned {playerMove}");
             }
-            if(playerMoveInt > 9 || playerMoveInt < 1)
+            if(playerMoveInt <= 9 || playerMoveInt >= 1)
             {
+               value = true;
                Console.WriteLine($"You returned {playerMove}");
             }
             else
@@ -97,8 +96,13 @@ namespace game
                playerMove = ($"{playerMoveInt}");
                value = true;
             }
+            if (value)
+            {
+               board [playerMoveInt - 1] = currentPlayer;
+            }
          }
       }
+
    }
 }
 
