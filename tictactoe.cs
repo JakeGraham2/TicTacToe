@@ -10,10 +10,10 @@ namespace game
          List<string> board = new List<string>{"1","2","3","4","5","6","7","8","9"};
          while (!IsGameOver(board))
          {
-            currentPlayer = GetPlayer(currentPlayer);
             DisplayBoard(board);
             Console.Write($" It's {currentPlayer}'s turn");
             GetPlayerMove(board,currentPlayer);
+            currentPlayer = GetPlayer(currentPlayer);
          }
       }
    //this will display the board
