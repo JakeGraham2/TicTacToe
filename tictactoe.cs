@@ -16,7 +16,7 @@ namespace game
             GetPlayerMove(board,currentPlayer);
          }
       }
-   
+   //this will display the board
       static void DisplayBoard(List<string> board)
       {
          Console.WriteLine($"{board[0]}|{board[1]}|{board[2]}");
