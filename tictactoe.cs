@@ -79,7 +79,7 @@ namespace game
          bool value = false;
          while(!value)
          { 
-            Console.Write($"{currentPlayer}'s turn to choose a square (1-9):");
+            Console.Write($"to choose a square (1-9):");
             string playerMove = Console.ReadLine();
             int playerMoveInt = Convert.ToInt32 (playerMove);
             if(board[playerMoveInt] == "x" || board[playerMoveInt] == "o" )
